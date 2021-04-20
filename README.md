@@ -9,8 +9,9 @@
 
 ```sh
 $ sudo apt-get install cmake make g++ git
-$ git clone https://github.com/arealhero/stc
-$ mkdir stc/build && cd stc/build
+$ git clone https://github.com/arealhero/stc && cd stc
+$ git submodule init && git submodule update
+$ mkdir build && cd build
 $ cmake -DCMAKE_BUILD_TYPE=Release ..
 $ make
 ```
