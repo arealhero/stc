@@ -56,3 +56,19 @@ return sum[0] + sum[1];
 
 but the precision drops drastically (difference between OptFilter and UnoptFilter outputs is ~1.5e-10).
 
+
+Ubuntu 18.04
+
+```
+-------------------------------------------------------------
+Benchmark                   Time             CPU   Iterations
+-------------------------------------------------------------
+BM_OptFilter/2           1220 ns         1217 ns       556354
+BM_OptFilter/4           1431 ns         1431 ns       492115
+BM_OptFilter/16          4171 ns         4164 ns       166693
+BM_OptFilter/256       698824 ns       697416 ns         1060
+BM_UnoptFilter/2         1259 ns         1259 ns       559742
+BM_UnoptFilter/4         1361 ns         1358 ns       555822
+BM_UnoptFilter/16        4088 ns         4082 ns       169248
+BM_UnoptFilter/256     691982 ns       690660 ns         1093
+```
