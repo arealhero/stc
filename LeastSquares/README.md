@@ -1,45 +1,56 @@
-# Least Squares
+# Метод наименьших квадратов
 
-Figure 1:
+Для всех 
+
+
 * in_x = [-3, -2, -1, 0, 1, 2];
 * in_y = [10, 2, -3, 7, -4, 1];
 
-![Figure 1](media/Figure1.png "Figure 1")
+![Изображение 1](media/Figure1.png "Изображение 1")
 
-Figure 2:
+---
+
 * in_x = [-3, -2, -1, 0, 1, 2, 0.5];
 * in_y = [10, 2, -3, 7, -4, 1, 9];
 
-![Figure 2](media/Figure2.png "Figure 2")
+![Изображение 2](media/Figure2.png "Изображение 2")
 
-Figure 3:
+---
+
 * in_x = [-3, -2, -1, 0, 1, 2];
 * in_y = [1, 1, 1, 1, 1, 2];
 
-![Figure 3](media/Figure3.png "Figure 3")
+![Изображение 3](media/Figure3.png "Изображение 3")
 
-Figure 4:
+---
+
 * in_x = [-3, -2, -1, 0, 1, 2];
 * in_y = [1, 1, 1, 2, 1, 1];
 
-![Figure 4](media/Figure4.png "Figure 4")
+![Изображение 4](media/Figure4.png "Изображение 4")
 
-Figure 5:
-* random, m = 15
+---
 
-![Figure 5](media/Figure5.png "Figure 5")
+* Random, m = 15
 
-Figure 6:
-* random, m = 30
-* red is my implementation
-* green is polyfit
+![Изображение 5](media/Figure5.png "Изображение 5")
 
-![Figure 6](media/Figure6.png "Figure 6")
+---
 
-Figure 7:
-* random, m = 14
-* red is my implementation
-* green is polyfit
+* Random, m = 30
+* Красная линия -- данная реализация
+* Зелёная линия -- polyfit
 
-![Figure 7](media/Figure7.png "Figure 7")
+![Изображение 6](media/Figure6.png "Изображение 6")
+
+---
+
+* Random, m = 14
+* Красная линия -- данная реализация
+* Зелёная линия -- polyfit
+
+![Изображение 7](media/Figure7.png "Изображение 7")
+
+### Полезные ссылки
+1. [vmath.ru](Записная книжка профессора Утешева)
 
