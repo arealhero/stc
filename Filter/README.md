@@ -34,16 +34,16 @@ Available intrinsics: MMX, SSE, SSE2, SSSE3
 
 ```sh
 $ uname -a
-Linux pc 5.11.10-arch1-1 #1 SMP PREEMPT Fri, 26 Mar 2021 00:11:29 +0000 x86_64 GNU/Linux
+Linux pc 5.4.0-42-generic #46~18.04.1-Ubuntu SMP Fri Jul 10 07:21:24 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
 
 $ c++ --version
-c++ (GCC) 10.2.0
+c++ (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0
 
 $ cmake --version
-cmake version 3.20.1
+cmake version 3.10.2
 
 $ make --version
-GNU Make 4.3
+GNU Make 4.1
 ```
 
 ```
