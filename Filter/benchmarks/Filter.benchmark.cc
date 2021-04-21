@@ -2,13 +2,21 @@
 
 #include <m128_OptFilter.h>
 #include <m128d_OptFilter.h>
+
+#ifdef __AVX_AVAILABLE__
 #include <m256_OptFilter.h>
 #include <m256d_OptFilter.h>
+#endif
 
+#ifdef __FMA_AVAILABLE__
 #include <fma_m128_OptFilter.h>
 #include <fma_m128d_OptFilter.h>
+#endif
+
+#if defined(__AVX_AVAILABLE__) && defined(__FMA_AVAILABLE__)
 #include <fma_m256_OptFilter.h>
 #include <fma_m256d_OptFilter.h>
+#endif
 
 #include <UnoptFilter.h>
 
@@ -39,6 +47,7 @@ BENCHMARK(BM_m128d_OptFilter)
 	->Args({ 1 << 4 })
 	->Args({ 1 << 8 });
 
+#ifdef __AVX__AVAILABLE__
 static void BM_m256d_OptFilter(benchmark::State& state)
 {
 	for (auto _ : state)
@@ -84,6 +93,7 @@ BENCHMARK(BM_m256_OptFilter)
 	->Args({ 1 << 2 })
 	->Args({ 1 << 4 })
 	->Args({ 1 << 8 });
+#endif
 
 static void BM_m128_OptFilter(benchmark::State& state)
 {
@@ -132,29 +142,6 @@ BENCHMARK(BM_fma_m128d_OptFilter)
 	->Args({ 1 << 4 })
 	->Args({ 1 << 8 });
 
-static void BM_fma_m256d_OptFilter(benchmark::State& state)
-{
-	for (auto _ : state)
-	{
-		state.PauseTiming();
-		auto coefficients = GenerateCoefficients(state.range(0));
-		Filter<double> filter = MakeFilter<fma_m256d_OptFilter>(coefficients);
-		auto inputs = GenerateCoefficients(state.range(0));
-		state.ResumeTiming();
-
-		for (auto input : inputs)
-		{
-			auto output = filter->GetNext(input);
-			benchmark::DoNotOptimize(output);
-		}
-	}
-}
-BENCHMARK(BM_fma_m256d_OptFilter)
-	->Args({ 1 << 1 })
-	->Args({ 1 << 2 })
-	->Args({ 1 << 4 })
-	->Args({ 1 << 8 });
-
 static void BM_fma_m128_OptFilter(benchmark::State& state)
 {
 	for (auto _ : state)
@@ -173,6 +160,31 @@ static void BM_fma_m128_OptFilter(benchmark::State& state)
 	}
 }
 BENCHMARK(BM_fma_m128_OptFilter)
+	->Args({ 1 << 1 })
+	->Args({ 1 << 2 })
+	->Args({ 1 << 4 })
+	->Args({ 1 << 8 });
+#endif
+
+#if defined(__AVX_AVAILABLE__) && defined(__FMA_AVAILABLE__)
+static void BM_fma_m256d_OptFilter(benchmark::State& state)
+{
+	for (auto _ : state)
+	{
+		state.PauseTiming();
+		auto coefficients = GenerateCoefficients(state.range(0));
+		Filter<double> filter = MakeFilter<fma_m256d_OptFilter>(coefficients);
+		auto inputs = GenerateCoefficients(state.range(0));
+		state.ResumeTiming();
+
+		for (auto input : inputs)
+		{
+			auto output = filter->GetNext(input);
+			benchmark::DoNotOptimize(output);
+		}
+	}
+}
+BENCHMARK(BM_fma_m256d_OptFilter)
 	->Args({ 1 << 1 })
 	->Args({ 1 << 2 })
 	->Args({ 1 << 4 })

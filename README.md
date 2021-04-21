@@ -18,7 +18,7 @@ $ make
 
 В папке `Filter/` будут лежать 2 исполняемых файла (тесты и бенчмарк) для [2.2](Filter/), а в папке `LCG/` - исполняемый файл для [2.3](LCG/).
 
-## FMA инструкции
+## FMA и AVX инструкции
 
 Чтобы проверить, поддерживает ли процессор FMA инструкции, достаточно запустить следующую команду:
 
@@ -26,10 +26,16 @@ $ make
 $ cat /proc/cpuinfo | grep -m1 "flags.*fma"
 ```
 
-Если вывод непустой, то в cmake можно передать флаг `-DFMA_AVAILABLE`:
+Аналогично для AVX инструкций:
 
 ```sh
-$ cmake -DCMAKE_BUILD_TYPE=Release -DFMA_AVAILABLE ..
+$ cat /proc/cpuinfo | grep -m1 "flags.*avx"
+```
+
+Если вывод непустой, то в cmake можно передать флаг `-DFMA` (`-DAVX` соответственно):
+
+```sh
+$ cmake -DCMAKE_BUILD_TYPE=Release -DFMA -DAVX ..
 $ make
 ```
 
