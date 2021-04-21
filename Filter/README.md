@@ -56,17 +56,25 @@ GNU Make 4.2.1
 ```
 
 ```
--------------------------------------------------------------
-Benchmark                   Time             CPU   Iterations
--------------------------------------------------------------
-BM_OptFilter/2           1247 ns         1243 ns       565229
-BM_OptFilter/4           1313 ns         1311 ns       534050
-BM_OptFilter/16          2182 ns         2210 ns       315509
-BM_OptFilter/256       218150 ns       217940 ns         3213
-BM_UnoptFilter/2         1262 ns         1254 ns       556962
-BM_UnoptFilter/4         1319 ns         1316 ns       531419
-BM_UnoptFilter/16        2182 ns         2211 ns       316657
-BM_UnoptFilter/256     217184 ns       217108 ns         3223
+----------------------------------------------------------------------
+Benchmark                           Time             CPU   Iterations
+---------------------------------------------------------------------
+BM_m128d_OptFilter/2             1293 ns         1225 ns       571454
+BM_m128d_OptFilter/4             1325 ns         1323 ns       531710
+BM_m128d_OptFilter/16            2193 ns         2190 ns       312372
+BM_m128d_OptFilter/256         219203 ns       218849 ns         3206
+BM_m128_OptFilter/2              1294 ns         1269 ns       507333
+BM_m128_OptFilter/4              1312 ns         1316 ns       530682
+BM_m128_OptFilter/16             2221 ns         2217 ns       315905
+BM_m128_OptFilter/256          217770 ns       217692 ns         3220
+BM_fma_m128d_OptFilter/2         1291 ns         1228 ns       571609
+BM_fma_m128d_OptFilter/4         1319 ns         1325 ns       530026
+BM_fma_m128d_OptFilter/16        2183 ns         2180 ns       315139
+BM_fma_m128d_OptFilter/256     217220 ns       217103 ns         3223
+BM_DoubleUnoptFilter/2           1296 ns         1235 ns       509598
+BM_DoubleUnoptFilter/4           1325 ns         1324 ns       529084
+BM_DoubleUnoptFilter/16          2225 ns         2218 ns       315588
+BM_DoubleUnoptFilter/256       217371 ns       217248 ns         3221
 ```
 
 ## SIMD

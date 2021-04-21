@@ -3,10 +3,12 @@
 #include <limits>
 
 #include <m128d_OptFilter.h>
+#include <m128_OptFilter.h>
+
 #include <UnoptFilter.h>
 #include <Utils.h>
 
-TEST(Filter, Constructor)
+TEST(DoubleFilter, Constructor)
 {
 	for (std::size_t size = 1; size < MAX_SIZE; ++size)
 	{
@@ -19,7 +21,7 @@ TEST(Filter, Constructor)
 	}
 }
 
-TEST(Filter, GetNext)
+TEST(DoubleFilter, GetNext)
 {
 	for (std::size_t size = 1; size < MAX_SIZE; ++size)
 	{
@@ -29,6 +31,40 @@ TEST(Filter, GetNext)
 
 		Filter<double> optFilter = MakeFilter<m128d_OptFilter>(coefficients);
 		Filter<double> unoptFilter = MakeFilter<DoubleUnoptFilter>(coefficients);
+
+		for (auto input : inputs)
+		{
+			auto optOut = optFilter->GetNext(input);
+			auto unoptOut = unoptFilter->GetNext(input);
+
+			ASSERT_DOUBLE_EQ(unoptOut, optOut);
+		}
+	}
+}
+
+TEST(FloatFilter, Constructor)
+{
+	for (std::size_t size = 1; size < MAX_SIZE; ++size)
+	{
+		auto coefficients = GenerateCoefficients<float>(size);
+
+		Filter<float> optFilter = MakeFilter<m128_OptFilter>(coefficients);
+		Filter<float> unoptFilter = MakeFilter<FloatUnoptFilter>(coefficients);
+
+		ASSERT_EQ(optFilter, unoptFilter);
+	}
+}
+
+TEST(FloatFilter, GetNext)
+{
+	for (std::size_t size = 1; size < MAX_SIZE; ++size)
+	{
+		auto coefficients = GenerateCoefficients<float>(size);
+		// TODO: rename GenerateCoefficients
+		auto inputs = GenerateCoefficients<float>(2 * size);
+
+		Filter<float> optFilter = MakeFilter<m128_OptFilter>(coefficients);
+		Filter<float> unoptFilter = MakeFilter<FloatUnoptFilter>(coefficients);
 
 		for (auto input : inputs)
 		{

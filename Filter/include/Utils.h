@@ -19,6 +19,7 @@ std::size_t GetRandomSize()
 	return distrib(gen);
 }
 
+// TODO: remove function
 double GetRandomDouble()
 {
 	static std::random_device rd;
@@ -28,13 +29,19 @@ double GetRandomDouble()
 	return distrib(gen);
 }
 
-std::vector<double> GenerateCoefficients(std::size_t size)
+// TODO: remove default template value
+template<typename ValueType = double>
+std::vector<ValueType> GenerateCoefficients(std::size_t size)
 {
-	std::vector<double> coefficients(size);
+	std::vector<ValueType> coefficients(size);
+
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_real_distribution<ValueType> distrib(1.0, MAX_VALUE);
 
 	for (auto& element : coefficients)
 	{
-		element = GetRandomDouble();
+		element = distrib(gen);
 	}
 
 	return coefficients;
