@@ -83,30 +83,46 @@ $ cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_available_governors
 ---------------------------------------------------------------------
 Benchmark                           Time             CPU   Iterations
 ---------------------------------------------------------------------
-BM_m128d_OptFilter/2             1318 ns         1270 ns       514459
-BM_m128d_OptFilter/4             1331 ns         1327 ns       523062
-BM_m128d_OptFilter/16            2237 ns         2238 ns       312925
-BM_m128d_OptFilter/256         218326 ns       218115 ns         3211
-BM_m128_OptFilter/2              1305 ns         1287 ns       530802
-BM_m128_OptFilter/4              1330 ns         1326 ns       531164
-BM_m128_OptFilter/16             2194 ns         2197 ns       312919
-BM_m128_OptFilter/256          218057 ns       217760 ns         3207
-BM_fma_m128d_OptFilter/2         1309 ns         1279 ns       512210
-BM_fma_m128d_OptFilter/4         1328 ns         1326 ns       525906
-BM_fma_m128d_OptFilter/16        2225 ns         2221 ns       313532
-BM_fma_m128d_OptFilter/256     217811 ns       217843 ns         3216
-BM_fma_m128_OptFilter/2          1298 ns         1244 ns       544648
-BM_fma_m128_OptFilter/4          1306 ns         1281 ns       543140
-BM_fma_m128_OptFilter/16         1622 ns         1623 ns       432174
-BM_fma_m128_OptFilter/256       56665 ns        56619 ns        12364
-BM_DoubleUnoptFilter/2           1291 ns         1243 ns       530538
-BM_DoubleUnoptFilter/4           1327 ns         1324 ns       528870
-BM_DoubleUnoptFilter/16          2221 ns         2216 ns       315886
-BM_DoubleUnoptFilter/256       217971 ns       217947 ns         3212
-BM_FloatUnoptFilter/2            1295 ns         1251 ns       551899
-BM_FloatUnoptFilter/4            1329 ns         1326 ns       528531
-BM_FloatUnoptFilter/16           2077 ns         2090 ns       315498
-BM_FloatUnoptFilter/256        217411 ns       217272 ns         3223
+BM_m128d_OptFilter/2             1533 ns         1532 ns       407470
+BM_m128d_OptFilter/4             1628 ns         1614 ns       420047
+BM_m128d_OptFilter/16            2233 ns         2231 ns       348110
+BM_m128d_OptFilter/256         218060 ns       218087 ns         3220
+BM_m256d_OptFilter/2             1313 ns         1320 ns       515467
+BM_m256d_OptFilter/4             1328 ns         1330 ns       525504
+BM_m256d_OptFilter/16            2261 ns         2262 ns       309435
+BM_m256d_OptFilter/256         218233 ns       218251 ns         3211
+BM_m256_OptFilter/2              1344 ns         1344 ns       516335
+BM_m256_OptFilter/4              1495 ns         1491 ns       493444
+BM_m256_OptFilter/16             2258 ns         2264 ns       323162
+BM_m256_OptFilter/256          218267 ns       218318 ns         3212
+BM_m128_OptFilter/2              1296 ns         1291 ns       533750
+BM_m128_OptFilter/4              1306 ns         1319 ns       530825
+BM_m128_OptFilter/16             2248 ns         2227 ns       313994
+BM_m128_OptFilter/256          217870 ns       217893 ns         3217
+BM_fma_m128d_OptFilter/2         1288 ns         1255 ns       530272
+BM_fma_m128d_OptFilter/4         1363 ns         1354 ns       531707
+BM_fma_m128d_OptFilter/16        2221 ns         2216 ns       356064
+BM_fma_m128d_OptFilter/256     217876 ns       217905 ns         3223
+BM_fma_m256d_OptFilter/2         1303 ns         1298 ns       531871
+BM_fma_m256d_OptFilter/4         1292 ns         1296 ns       538808
+BM_fma_m256d_OptFilter/16        1650 ns         1649 ns       424214
+BM_fma_m256d_OptFilter/256      56654 ns        56651 ns        12340
+BM_fma_m128_OptFilter/2          1289 ns         1272 ns       552958
+BM_fma_m128_OptFilter/4          1373 ns         1341 ns       556381
+BM_fma_m128_OptFilter/16         1624 ns         1607 ns       436430
+BM_fma_m128_OptFilter/256       56234 ns        56239 ns        12454
+BM_fma_m256_OptFilter/2          1300 ns         1296 ns       539898
+BM_fma_m256_OptFilter/4          1308 ns         1312 ns       533530
+BM_fma_m256_OptFilter/16         1446 ns         1440 ns       486705
+BM_fma_m256_OptFilter/256       29232 ns        29224 ns        23951
+BM_DoubleUnoptFilter/2           1297 ns         1251 ns       566634
+BM_DoubleUnoptFilter/4           1386 ns         1374 ns       496730
+BM_DoubleUnoptFilter/16          2217 ns         2211 ns       316297
+BM_DoubleUnoptFilter/256       217425 ns       217417 ns         3221
+BM_FloatUnoptFilter/2            1292 ns         1238 ns       566139
+BM_FloatUnoptFilter/4            1305 ns         1319 ns       531216
+BM_FloatUnoptFilter/16           2214 ns         2216 ns       316807
+BM_FloatUnoptFilter/256        217480 ns       217483 ns         3220
 ```
 
 ## SIMD
