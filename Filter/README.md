@@ -125,6 +125,8 @@ BM_FloatUnoptFilter/16           2214 ns         2216 ns       316807
 BM_FloatUnoptFilter/256        217480 ns       217483 ns         3220
 ```
 
+`fma_m256_OptFilter` работает в 7.5 раз быстрее неоптимизированной версии.
+
 ## SIMD
 
 I tried to use
