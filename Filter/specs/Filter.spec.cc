@@ -2,7 +2,7 @@
 
 #include <limits>
 
-#include <OptFilter.h>
+#include <m128d_OptFilter.h>
 #include <UnoptFilter.h>
 #include <Utils.h>
 
@@ -12,8 +12,8 @@ TEST(Filter, Constructor)
 	{
 		auto coefficients = GenerateCoefficients(size);
 
-		Filter optFilter = Make<OptFilter>(coefficients);
-		Filter unoptFilter = Make<UnoptFilter>(coefficients);
+		Filter<double> optFilter = MakeFilter<m128d_OptFilter>(coefficients);
+		Filter<double> unoptFilter = MakeFilter<DoubleUnoptFilter>(coefficients);
 
 		ASSERT_EQ(optFilter, unoptFilter);
 	}
@@ -27,8 +27,8 @@ TEST(Filter, GetNext)
 		// TODO: rename GenerateCoefficients
 		auto inputs = GenerateCoefficients(2 * size);
 
-		Filter optFilter = Make<OptFilter>(coefficients);
-		Filter unoptFilter = Make<UnoptFilter>(coefficients);
+		Filter<double> optFilter = MakeFilter<m128d_OptFilter>(coefficients);
+		Filter<double> unoptFilter = MakeFilter<DoubleUnoptFilter>(coefficients);
 
 		for (auto input : inputs)
 		{

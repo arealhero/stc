@@ -52,3 +52,11 @@ std::unique_ptr<T> Make(Args&&... args)
 	return std::make_unique<T>(std::forward<Args>(args)...);
 }
 
+template<typename T, typename... Args>
+std::unique_ptr<T> MakeFilter(Args&&... args)
+{
+	auto filter = std::make_unique<T>();
+	filter->Init(std::forward<Args>(args)...);
+	return filter;
+}
+

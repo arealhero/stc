@@ -3,20 +3,25 @@
 #include <vector>
 #include <memory>
 
+template<typename ValueType>
 class IFilter
 {
 public:
 	virtual ~IFilter() {}
 
-	virtual double GetNext(double input) = 0;
+	virtual void Init(const std::vector<ValueType>& coefficients) = 0;
+
+	virtual ValueType GetNext(ValueType input) = 0;
 
 	virtual std::size_t GetSize() const = 0;
-	virtual std::vector<double> GetCoefficients() const = 0;
+	virtual std::vector<ValueType> GetCoefficients() const = 0;
 };
 
-using Filter = std::unique_ptr<IFilter>;
+template<typename ValueType>
+using Filter = std::unique_ptr<IFilter<ValueType>>;
 
-bool operator==(const Filter& lhs, const Filter& rhs)
+template<typename ValueType>
+bool operator==(const Filter<ValueType>& lhs, const Filter<ValueType>& rhs)
 {
 	return lhs->GetCoefficients() == rhs->GetCoefficients();
 }
