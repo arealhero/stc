@@ -55,26 +55,58 @@ $ make --version
 GNU Make 4.2.1
 ```
 
+Чтобы избавиться от предупреждения "Cpu scaling is enabled", необходимо запустить следующую команду:
+
+```sh
+$ echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
 ```
-----------------------------------------------------------------------
+
+Чтобы обратно включить режим энергосбережения:
+
+```sh
+$ echo powersave | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+```
+
+Посмотреть текущий режим:
+
+```sh
+$ cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+```
+
+Посмотреть доступные режимы:
+
+```sh
+$ cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_available_governors
+```
+
+```
+---------------------------------------------------------------------
 Benchmark                           Time             CPU   Iterations
 ---------------------------------------------------------------------
-BM_m128d_OptFilter/2             1293 ns         1225 ns       571454
-BM_m128d_OptFilter/4             1325 ns         1323 ns       531710
-BM_m128d_OptFilter/16            2193 ns         2190 ns       312372
-BM_m128d_OptFilter/256         219203 ns       218849 ns         3206
-BM_m128_OptFilter/2              1294 ns         1269 ns       507333
-BM_m128_OptFilter/4              1312 ns         1316 ns       530682
-BM_m128_OptFilter/16             2221 ns         2217 ns       315905
-BM_m128_OptFilter/256          217770 ns       217692 ns         3220
-BM_fma_m128d_OptFilter/2         1291 ns         1228 ns       571609
-BM_fma_m128d_OptFilter/4         1319 ns         1325 ns       530026
-BM_fma_m128d_OptFilter/16        2183 ns         2180 ns       315139
-BM_fma_m128d_OptFilter/256     217220 ns       217103 ns         3223
-BM_DoubleUnoptFilter/2           1296 ns         1235 ns       509598
-BM_DoubleUnoptFilter/4           1325 ns         1324 ns       529084
-BM_DoubleUnoptFilter/16          2225 ns         2218 ns       315588
-BM_DoubleUnoptFilter/256       217371 ns       217248 ns         3221
+BM_m128d_OptFilter/2             1318 ns         1270 ns       514459
+BM_m128d_OptFilter/4             1331 ns         1327 ns       523062
+BM_m128d_OptFilter/16            2237 ns         2238 ns       312925
+BM_m128d_OptFilter/256         218326 ns       218115 ns         3211
+BM_m128_OptFilter/2              1305 ns         1287 ns       530802
+BM_m128_OptFilter/4              1330 ns         1326 ns       531164
+BM_m128_OptFilter/16             2194 ns         2197 ns       312919
+BM_m128_OptFilter/256          218057 ns       217760 ns         3207
+BM_fma_m128d_OptFilter/2         1309 ns         1279 ns       512210
+BM_fma_m128d_OptFilter/4         1328 ns         1326 ns       525906
+BM_fma_m128d_OptFilter/16        2225 ns         2221 ns       313532
+BM_fma_m128d_OptFilter/256     217811 ns       217843 ns         3216
+BM_fma_m128_OptFilter/2          1298 ns         1244 ns       544648
+BM_fma_m128_OptFilter/4          1306 ns         1281 ns       543140
+BM_fma_m128_OptFilter/16         1622 ns         1623 ns       432174
+BM_fma_m128_OptFilter/256       56665 ns        56619 ns        12364
+BM_DoubleUnoptFilter/2           1291 ns         1243 ns       530538
+BM_DoubleUnoptFilter/4           1327 ns         1324 ns       528870
+BM_DoubleUnoptFilter/16          2221 ns         2216 ns       315886
+BM_DoubleUnoptFilter/256       217971 ns       217947 ns         3212
+BM_FloatUnoptFilter/2            1295 ns         1251 ns       551899
+BM_FloatUnoptFilter/4            1329 ns         1326 ns       528531
+BM_FloatUnoptFilter/16           2077 ns         2090 ns       315498
+BM_FloatUnoptFilter/256        217411 ns       217272 ns         3223
 ```
 
 ## SIMD
