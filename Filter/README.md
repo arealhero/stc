@@ -37,6 +37,38 @@ BM_UnoptFilter/256     677142 ns       675935 ns         1029
 
 `float`s (using `_mm_mul_ps`):
 
+
+AMD Ryzen 7 4800H with Radeon Graphics
+Available intrinsics: MMX, SSE, SSE2, SSSE3, SSE4.1, SSE4.2, AVX, AVX2, FMA
+
+```sh
+$ uname -a
+Linux pc 5.8.0-49-generic #55~20.04.1-Ubuntu SMP Fri Mar 26 01:01:07 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
+
+$ c++ --version
+c++ (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0
+
+$ cmake --version
+cmake version 3.16.3
+
+$ make --version
+GNU Make 4.2.1
+```
+
+```
+-------------------------------------------------------------
+Benchmark                   Time             CPU   Iterations
+-------------------------------------------------------------
+BM_OptFilter/2           1247 ns         1243 ns       565229
+BM_OptFilter/4           1313 ns         1311 ns       534050
+BM_OptFilter/16          2182 ns         2210 ns       315509
+BM_OptFilter/256       218150 ns       217940 ns         3213
+BM_UnoptFilter/2         1262 ns         1254 ns       556962
+BM_UnoptFilter/4         1319 ns         1316 ns       531419
+BM_UnoptFilter/16        2182 ns         2211 ns       316657
+BM_UnoptFilter/256     217184 ns       217108 ns         3223
+```
+
 ## SIMD
 
 I tried to use

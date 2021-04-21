@@ -2,8 +2,9 @@
 
 #include "IFilter.h"
 
-#include <xmmintrin.h>
+#include <immintrin.h>
 #include <cstring>
+#include <iostream>
 
 class OptFilter : public IFilter
 {
@@ -42,15 +43,24 @@ public:
 		m_offset = (m_offset + 1) % m_size;
 
 		auto rem = m_size % 2;
+#ifdef __FMA_AVAILABLE__
+		__m128d sum = { 0.0, 0.0 };
+#else
 		double sum = 0.0;
+#endif
 		for (std::size_t i = 0; i < m_size - rem; i += 2)
 		{
 			__m128d inputs = { GetInput(i), GetInput(i + 1) };
 			__m128d coefficients = m_coefficients[i / 2];
+
+#ifdef __FMA_AVAILABLE__
+			sum = _mm_fmadd_pd(inputs, coefficients, sum);
+#else
 			__m128d res = _mm_mul_pd(inputs, coefficients);
 
 			sum += res[0];
 			sum += res[1];
+#endif
 			/* sum = _mm_add_pd(sum, res); */
 		}
 
@@ -58,13 +68,22 @@ public:
 		{
 			__m128d inputs = { GetInput(m_size - 1), 0.0 };
 			__m128d coefficients = m_coefficients[m_size / 2];
+
+#ifdef __FMA_AVAILABLE__
+			sum = _mm_fmadd_pd(inputs, coefficients, sum);
+#else
 			__m128d res = _mm_mul_pd(inputs, coefficients);
 
 			sum += res[0];
+#endif
 			/* sum = _mm_add_pd(sum, res); */
 		}
 
+#ifdef __FMA_AVAILABLE__
+		return sum[0] + sum[1];
+#else
 		return sum;
+#endif
 	}
 
 	std::size_t GetSize() const override
