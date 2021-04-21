@@ -4,8 +4,9 @@
 #include <m128d_OptFilter.h>
 #include <m256d_OptFilter.h>
 
-#include <fma_m128d_OptFilter.h>
 #include <fma_m128_OptFilter.h>
+#include <fma_m128d_OptFilter.h>
+#include <fma_m256d_OptFilter.h>
 
 #include <UnoptFilter.h>
 
@@ -101,6 +102,29 @@ static void BM_fma_m128d_OptFilter(benchmark::State& state)
 	}
 }
 BENCHMARK(BM_fma_m128d_OptFilter)
+	->Args({ 1 << 1 })
+	->Args({ 1 << 2 })
+	->Args({ 1 << 4 })
+	->Args({ 1 << 8 });
+
+static void BM_fma_m256d_OptFilter(benchmark::State& state)
+{
+	for (auto _ : state)
+	{
+		state.PauseTiming();
+		auto coefficients = GenerateCoefficients(state.range(0));
+		Filter<double> filter = MakeFilter<fma_m256d_OptFilter>(coefficients);
+		auto inputs = GenerateCoefficients(state.range(0));
+		state.ResumeTiming();
+
+		for (auto input : inputs)
+		{
+			auto output = filter->GetNext(input);
+			benchmark::DoNotOptimize(output);
+		}
+	}
+}
+BENCHMARK(BM_fma_m256d_OptFilter)
 	->Args({ 1 << 1 })
 	->Args({ 1 << 2 })
 	->Args({ 1 << 4 })

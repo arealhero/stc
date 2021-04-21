@@ -8,6 +8,7 @@
 class m256d_OptFilter : public IOptFilter<double, __m256d, 4>
 {
 public:
+	// TODO: remove `using ...` statement from m*_OptFilter's
 	using IOptFilter::IOptFilter;
 
 protected:
