@@ -32,10 +32,10 @@ $ cat /proc/cpuinfo | grep -m1 "flags.*fma"
 $ cat /proc/cpuinfo | grep -m1 "flags.*avx"
 ```
 
-Если вывод непустой, то в cmake можно передать флаг `-DFMA` (`-DAVX` соответственно):
+Если вывод непустой, то в cmake можно передать флаг `-DFMA=ON` (`-DAVX=ON` соответственно):
 
 ```sh
-$ cmake -DCMAKE_BUILD_TYPE=Release -DFMA -DAVX ..
+$ cmake -DCMAKE_BUILD_TYPE=Release -DFMA=ON -DAVX=ON ..
 $ make
 ```
 
