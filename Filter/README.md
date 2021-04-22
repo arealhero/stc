@@ -132,6 +132,62 @@ BM_FloatUnoptFilter/16           2214 ns         2216 ns       316807
 BM_FloatUnoptFilter/256        217480 ns       217483 ns         3220
 ```
 
+- Intel(R) Core(TM) i7-7700HQ CPU @ 2.80GHz
+
+Available intrinsics: MMX, SSE, SSE2, SSSE3, SSE4.1, SSE4.2, AVX, AVX2, FMA
+
+```
+$ uname -a
+Linux pc 5.10.30-1-MANJARO #1 SMP Wed Apr 14 08:07:27 UTC 2021 x86_64 GNU/Linux
+
+$ c++ --version
+c++ (GCC) 10.2.0
+
+$ cmake --version
+cmake version 3.20.1
+
+$ make --version
+GNU Make 4.3
+```
+
+```
+---------------------------------------------------------------------
+Benchmark                           Time             CPU   Iterations
+---------------------------------------------------------------------
+BM_m128d_OptFilter/2              704 ns          707 ns       994959                                                   
+BM_m128d_OptFilter/4              815 ns          813 ns       867307                                                   
+BM_m128d_OptFilter/16            2879 ns         2871 ns       252633                                                   
+BM_m128d_OptFilter/256         525730 ns       525398 ns         1385                                                   
+BM_m128_OptFilter/2               765 ns          761 ns       864010                                                   
+BM_m128_OptFilter/4               823 ns          820 ns       830158                                                   
+BM_m128_OptFilter/16             2605 ns         2606 ns       267454                                                   
+BM_m128_OptFilter/256          468811 ns       468760 ns         1471                                                   
+BM_fma_m128d_OptFilter/2          744 ns          740 ns       946191                                                   
+BM_fma_m128d_OptFilter/4          872 ns          862 ns       793476                                                   
+BM_fma_m128d_OptFilter/16        2834 ns         2820 ns       249222                                                   
+BM_fma_m128d_OptFilter/256     515533 ns       515227 ns         1327                                                   
+BM_fma_m128_OptFilter/2           734 ns          731 ns       939563                                                   
+BM_fma_m128_OptFilter/4           832 ns          827 ns       909044                                                   
+BM_fma_m128_OptFilter/16         1303 ns         1300 ns       515172                                                   
+BM_fma_m128_OptFilter/256      133652 ns       133622 ns         5329                                                   
+BM_fma_m256d_OptFilter/2          781 ns          769 ns       953821                                                   
+BM_fma_m256d_OptFilter/4          766 ns          760 ns       843087                                                   
+BM_fma_m256d_OptFilter/16        1330 ns         1326 ns       535792
+BM_fma_m256d_OptFilter/256     134769 ns       134746 ns         5153
+BM_fma_m256_OptFilter/2           745 ns          740 ns      1010518
+BM_fma_m256_OptFilter/4           851 ns          834 ns       885719
+BM_fma_m256_OptFilter/16         1150 ns         1143 ns       612099
+BM_fma_m256_OptFilter/256       68333 ns        68327 ns         9849
+BM_DoubleUnoptFilter/2            703 ns          705 ns      1001970
+BM_DoubleUnoptFilter/4            917 ns          902 ns       870656
+BM_DoubleUnoptFilter/16          2932 ns         2917 ns       234448
+BM_DoubleUnoptFilter/256       559913 ns       561232 ns         1310
+BM_FloatUnoptFilter/2             775 ns          769 ns       856366
+BM_FloatUnoptFilter/4             804 ns          803 ns       851521
+BM_FloatUnoptFilter/16           2663 ns         2663 ns       265129
+BM_FloatUnoptFilter/256        506821 ns       506478 ns         1321
+```
+
 ## Вывод
 
 `fma_m256_OptFilter` работает в 7.5 раз быстрее неоптимизированной версии.
